@@ -9,7 +9,7 @@
 import axios from "axios";
 import HelloWorld from "./components/HelloWorld.vue";
 
-const API_URL = "/api";
+const API_URL = process.env.VUE_APP_API_URL;
 
 export default {
   name: "app",
@@ -17,7 +17,9 @@ export default {
     HelloWorld
   },
 
-  async mounted() {
+  async created() {
+    console.log(API_URL);
+    console.log(process.env)
     // eslint-disable-next-line no-console
     await axios.get(API_URL).then(response => console.log(response));
   }
