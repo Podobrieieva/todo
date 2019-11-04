@@ -9,7 +9,7 @@
 import axios from "axios";
 import HelloWorld from "./components/HelloWorld.vue";
 
-const API_URL = "http://localhost:5050/api";
+const API_URL = "/api";
 
 export default {
   name: "app",
