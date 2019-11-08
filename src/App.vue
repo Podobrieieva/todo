@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app-container">
     <TodoInput />
     <TodoList />
   </div>
@@ -25,5 +25,17 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 500px;
+  margin-left: 50px;
+}
+</style>
 
 

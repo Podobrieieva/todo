@@ -1,11 +1,14 @@
 
 <template>
-<div>
+<div class="todo-input">
     <md-field>
       <label>New Task</label>
-      <md-input v-model="withLabel" placeholder="A nice placeholder"></md-input>
+      <md-input 
+        v-model="withLabel" 
+        placeholder="Create a task"
+      />
     </md-field>
-     <md-button :md-ripple="false">Ripple Off</md-button>
+     <md-button class="md-raised md-primary">Save</md-button>
 </div>
 
 </template>
@@ -27,20 +30,10 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+<style lang="scss" scoped>
+.todo-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
