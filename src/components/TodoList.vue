@@ -1,10 +1,15 @@
 <template>
   <div>
-    <TodoItem />
+    <TodoItem
+      v-for="(task, index) in tasks"
+      :key="`${task.name}${index}`"
+      :task="task"
+    />
   </div>
 </template>
 
 <script>
+
 import TodoItem from "./TodoItem";
 
 export default {
@@ -14,5 +19,11 @@ export default {
     TodoItem,
   },
 
+  props: {
+    tasks: {
+      type: Array,
+      default: [],
+    }
+  },
 }
 </script>

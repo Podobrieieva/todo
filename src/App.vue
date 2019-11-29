@@ -1,16 +1,19 @@
 <template>
   <div class="app-container">
     <TodoInput />
-    <TodoList />
+    <TodoList
+      v-if="tasks.length !== 0"
+      :tasks="tasks" 
+    />
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import { mapState, mapActions } from "vuex";
 import TodoList from "./components/TodoList";
 import TodoInput from "./components/TodoInput";
 
-const API_URL = process.env.VUE_APP_API_URL;
+
 
 export default {
   name: "App",
@@ -20,8 +23,20 @@ export default {
     TodoInput
   },
 
+  computed: {
+    ...mapState([
+      'tasks'
+    ]),
+  },
+
   async created() {
-    await axios.get(API_URL).then(response => console.log(response));
+    await this.getData();
+  },
+
+  methods: {
+    ...mapActions([
+      'getData',
+    ]),
   }
 };
 </script>

@@ -3,31 +3,34 @@ import EventService from '../services/eventService';
 export default {
   getData({
     commit,
-  }, currency) {
-    return EventService.getEvents(currency)
+  }) {
+    return EventService.getTasks()
       .then(({
         data,
       }) => {
-        if (data.success) {
+        console.log(data)
           commit('updateState', {
-            [data.target]: data.rates,
+            tasks: data,
           });
-        } else {
-          const notification = {
-            type: 'error',
-            message: `There was a problem fetching events: ${data.error.info}`
-          };
-
-          commit('addError', notification);
-        }
       })
-      .catch(error => {
-        const notification = {
-          type: 'error',
-          message: `There was a problem fetching events: ${error}`
-        };
+      // .catch(error => {
+      //   const notification = {
+      //     type: 'error',
+      //     message: `There was a problem fetching data: ${error}`
+      //   };
 
-        commit('addError', notification);
-      });
+      //   commit('addError', notification);
+      // });
+  },
+
+  createTask({
+    commit,
+  }, task) {
+    return EventService.createNewTask(task)
+      .then(({
+        data,
+      }) => {
+        console.log(data)
+      }).catch((err) => console.log(err))
   },
 }

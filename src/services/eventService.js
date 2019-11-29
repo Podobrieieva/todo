@@ -1,18 +1,21 @@
 import axios from 'axios';
+const API_URL = process.env.VUE_APP_API_URL;
 
 const apiClient = axios.create({
-  baseURL: 'http://api.coinlayer.com/api',
-  withCredentials: false, // This is the default
+  baseURL: API_URL,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   },
-  timeout: 10000
 });
 
 
 export default {
-  getEvents(currency) {
-    return apiClient.get(`/live?access_key=${ACCESS_KEY}&target=${currency}&symbols=${SYMBOLS}`);
+  getTasks() {
+    return apiClient.get('/tasks');
+  },
+
+  createNewTask(newTask) {
+    return apiClient.post('/tasks', newTask);
   },
 }

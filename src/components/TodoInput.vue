@@ -4,29 +4,45 @@
     <md-field>
       <label>New Task</label>
       <md-input 
-        v-model="withLabel" 
+        v-model="task" 
         placeholder="Create a task"
       />
     </md-field>
-     <md-button class="md-raised md-primary">Save</md-button>
+     <md-button
+      class="md-raised md-primary"
+      @click="saveTask"
+    >
+      Save
+    </md-button>
 </div>
 
 </template>
 
 <script>
+import { mapActions, mapMutations } from 'vuex';
 
 export default {
   name: 'TodoList',
 
   data: () => ({
-      withLabel: '',
+      task: '',
   }),
 
-  watch: {
-      withLabel(value) {
-          console.log(value)
-      }
-  }
+  methods: {
+    ...mapMutations([
+      'addTask',
+    ]),
+
+    ...mapActions([
+      'createTask',
+    ]),
+
+    saveTask() {
+      this.createTask({name: this.task});
+      this.addTask(this.task);
+      this.task = '';
+    },
+  },
 }
 </script>
 
