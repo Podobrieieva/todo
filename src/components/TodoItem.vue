@@ -20,14 +20,19 @@
         >
           {{ !isEdit ? 'Edit' : 'Save'}}
         </md-button>
-        <md-button class="md-raised">Delete</md-button>
+        <md-button 
+          class="md-raised"
+          @click="$emit('delete-task', task.id)"
+        >
+          Delete
+        </md-button>
       </div>
     <md-divider class="md-inset"></md-divider>
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
 
 export default {
   name: 'TodoItem',
@@ -49,11 +54,19 @@ export default {
       'editTask',
     ]),
 
+    ...mapActions([
+      'EDIT_TASK'
+    ]),
+
     editCurrentTask() {
-      if(this.isEdit) this.editTask({ id: this.task.id, name: this.editValue });
+      if(this.isEdit) {
+        this.editTask({ id: this.task.id, name: this.editValue });
+        this.EDIT_TASK({ id: this.task.id, name: this.editValue });
+      }
+
 
       this.isEdit = !this.isEdit;
-    }
+    },
   }
 
 }

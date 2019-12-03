@@ -4,6 +4,7 @@
       v-for="(task, index) in tasks"
       :key="`${task.name}${index}`"
       :task="task"
+      @delete-task="$emit('delete-task', $event)"
     />
   </div>
 </template>

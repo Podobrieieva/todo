@@ -33,4 +33,27 @@ export default {
         console.log(data)
       }).catch((err) => console.log(err))
   },
+
+  
+  deleteTask({
+    commit,
+  }, id) {
+    return EventService.deleteTask(id)
+      .then(({
+        data,
+      }) => {
+        console.log(data)
+      }).catch((err) => console.log(err))
+  },
+
+  EDIT_TASK({
+    commit,
+  }, task) {
+    return EventService.editTask(task)
+      .then(({
+        data,
+      }) => {
+        console.log(data)
+      }).catch((err) => console.log(err))
+  },
 }

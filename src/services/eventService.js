@@ -18,4 +18,12 @@ export default {
   createNewTask(newTask) {
     return apiClient.post('/tasks', newTask);
   },
+
+  deleteTask(id) {
+    return apiClient.delete(`/tasks/${id}`);
+  },
+  
+  editTask(task) {
+    return apiClient.patch(`/tasks/${task.id}`, task);
+  },
 }

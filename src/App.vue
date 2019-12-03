@@ -3,7 +3,8 @@
     <TodoInput />
     <TodoList
       v-if="tasks.length !== 0"
-      :tasks="tasks" 
+      :tasks="tasks"
+      @delete-task="deleteCurrentTask"
     />
   </div>
 </template>
@@ -36,7 +37,13 @@ export default {
   methods: {
     ...mapActions([
       'getData',
+      'deleteTask'
     ]),
+
+    async deleteCurrentTask(id) {
+      await this.deleteTask(id);
+      await this.getData();
+    }
   }
 };
 </script>
