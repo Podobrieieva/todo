@@ -1,11 +1,7 @@
 <template>
   <div class="app-container">
-    <TodoInput />
-    <TodoList
-      v-if="tasks.length !== 0"
-      :tasks="tasks"
-      @delete-task="deleteCurrentTask"
-    />
+    <TodoInput @create-task="addTask" />
+    <TodoList v-if="tasks.length !== 0" :tasks="tasks" @delete-task="deleteCurrentTask" />
   </div>
 </template>
 
@@ -14,20 +10,16 @@ import { mapState, mapActions } from "vuex";
 import TodoList from "./components/TodoList";
 import TodoInput from "./components/TodoInput";
 
-
-
 export default {
   name: "App",
-  
+
   components: {
     TodoList,
     TodoInput
   },
 
   computed: {
-    ...mapState([
-      'tasks'
-    ]),
+    ...mapState(["tasks"])
   },
 
   async created() {
@@ -35,10 +27,12 @@ export default {
   },
 
   methods: {
-    ...mapActions([
-      'getData',
-      'deleteTask'
-    ]),
+    ...mapActions(["getData", "deleteTask", "createTask"]),
+
+    async addTask(taskName) {
+      await this.createTask({ name: taskName });
+      await this.getData();
+    },
 
     async deleteCurrentTask(id) {
       await this.deleteTask(id);
@@ -49,7 +43,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .app-container {
   display: flex;
   flex-direction: column;

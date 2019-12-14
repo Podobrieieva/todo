@@ -22,8 +22,8 @@ export default {
   deleteTask(id) {
     return apiClient.delete(`/tasks/${id}`);
   },
-  
+
   editTask(task) {
-    return apiClient.patch(`/tasks/${task.id}`, task);
+    return apiClient.patch(`/tasks/${task._id}`, task);
   },
 }
