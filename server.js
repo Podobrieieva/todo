@@ -9,6 +9,8 @@ app.use(express.json())
 
 const port = process.env.PORT;
 
+app.use(express.static("/dist"));
+
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:5051');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
@@ -67,8 +69,6 @@ app.patch("/api/tasks/:taskId", async (req, res) => {
         res.status(400).send(err)
     }
 });
-
-app.use(express.static("/dist"));
 
 app.listen(port, () => {
     console.log("object");
