@@ -7,7 +7,6 @@ const app = express();
 app.use(express.json())
 
 app.use((req, res, next) => {
-    res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
     res.header('Access-Control-Allow-Origin', 'http://localhost:5051');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     res.header('Access-Control-Allow-Methods', 'DELETE, PATCH');
@@ -66,6 +65,6 @@ app.patch("/api/tasks/:taskId", async (req, res) => {
     }
 });
 
-app.use(express.static("../dist"));
+app.use(express.static(__dirname + "../dist"));
 
 module.exports = app;
