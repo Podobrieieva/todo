@@ -7,6 +7,7 @@ const app = express();
 app.use(express.json())
 
 app.use((req, res, next) => {
+    res.header("Content-Security-Policy", "script-src 'self' https://apis.google.com");
     res.header('Access-Control-Allow-Origin', 'http://localhost:5051');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     res.header('Access-Control-Allow-Methods', 'DELETE, PATCH');
